@@ -26,5 +26,5 @@ dist
 images
 # build
 # Gatsby files
-
+db.json
 .pnp.*
