@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/x-icon" href="./school logo.jpg" />
+
+    <title>List of students</title>
+  </head>
+  <body>
+    <h1>List of students</h1>
+    <div class="list">
+      <table class="table" border="1">
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Name</th>
+            <th>Admission Number</th>
+            <th>Phone Number</th>
+            <th>Program</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="refresh-container">
+      <button class="refresh">Refresh</button>
+    </div>
+  </body>
+  <script>
+    (function () {
+      document.addEventListener("DOMContentLoaded", async (e) => {
+        await fetchStudents();
+      });
+    })();
+    const fetchStudents = async () => {
+      const tbody = document.getElementById("tbody");
+      let template = ``;
+      template = `<tr>
+                    <td colspan="6" style="text-align:center;">Loading...</td>
+                    </tr>`;
+      tbody.innerHTML = template;
+      const response = await fetch("/students", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      if (!response.ok) {
+        return alert("unable to fetch students");
+      }
+      const students = await response.json();
+      students.length === 0
+        ? (template =
+            '<tr><td colspan="6" style="text-align:center;">No record</td></tr>')
+        : (template = "");
+      students.map((student, i) => {
+        template += `<tr><td>${i + 1}</td>
+            <td>${student.name}</td>
+            <td>${student.adm}</td>
+            <td>${student.phone}</td>
+            <td>${student.program === "M" ? "Morning" : "Evening"}</td>
+            </tr>`;
+      });
+      tbody.innerHTML = template;
+    };
+    document.querySelector(".refresh").addEventListener("click", async (e) => {
+      e.target.innerHTML = "Loading...";
+      await fetchStudents();
+      e.target.innerHTML = "Refresh";
+    });
+  </script>
+</html>

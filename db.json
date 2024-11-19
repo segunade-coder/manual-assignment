@@ -1,0 +1,25 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Adediran Jehoshaphat",
+      "adm": "156",
+      "phone": "09078785538",
+      "program": "M"
+    },
+    {
+      "id": "1181",
+      "name": "Lemo Samuel",
+      "adm": "061",
+      "phone": "ewe",
+      "program": "M"
+    },
+    {
+      "id": "175c",
+      "name": "Abdulrahman Alfa",
+      "adm": "023",
+      "phone": "09078785538",
+      "program": "E"
+    }
+  ]
+}
