@@ -19,6 +19,7 @@
             <th>Admission Number</th>
             <th>Phone Number</th>
             <th>Program</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -38,7 +39,7 @@
       const tbody = document.getElementById("tbody");
       let template = ``;
       template = `<tr>
-                    <td colspan="6" style="text-align:center;">Loading...</td>
+                    <td colspan="7" style="text-align:center;">Loading...</td>
                     </tr>`;
       tbody.innerHTML = template;
       const response = await fetch("/students", {
@@ -53,7 +54,7 @@
       const students = await response.json();
       students.data.length === 0
         ? (template =
-            '<tr><td colspan="6" style="text-align:center;">No record</td></tr>')
+            '<tr><td colspan="7" style="text-align:center;">No record</td></tr>')
         : (template = "");
       students.data.map((student, i) => {
         template += `<tr><td>${i + 1}</td>
@@ -61,6 +62,9 @@
             <td>${student.adm}</td>
             <td>${student.phone}</td>
             <td>${student.program === "M" ? "Morning" : "Evening"}</td>
+            <td><img src="./garbage-svgrepo-com.svg" onClick="handleDelete(${
+              student.id
+            })/> </td>
             </tr>`;
       });
       tbody.innerHTML = template;
@@ -70,5 +74,8 @@
       await fetchStudents();
       e.target.innerHTML = "Refresh";
     });
+    const handleDelete = async () => {
+      console.log("hi");
+    };
   </script>
 </html>

@@ -54,7 +54,7 @@ document
       window.location.href = `./success.html?adm=${adm}`;
     } else {
       LINK_CLICKED = false;
-      // window.location.href = "./error.html";
+      window.location.href = "./error.html";
     }
   });
 document.querySelector(".whatsapp").addEventListener("click", (e) => {

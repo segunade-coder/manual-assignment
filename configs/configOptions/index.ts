@@ -1,6 +1,5 @@
 import { CorsOptions } from "cors";
 import dotenv from "dotenv";
-import { Request } from "express";
 dotenv.config({ path: "../../.env" });
 export const corsConfig: CorsOptions = {
   origin: [process.env.CLIENT_URL as string, "http://127.0.0.1:5500"],

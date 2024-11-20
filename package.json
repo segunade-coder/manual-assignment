@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.ts",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,6 @@
     "mysql": "^2.18.1",
     "nodemon": "^3.0.1",
     "npm": "^10.5.0",
-    "ts-node": "^10.9.2",
     "winston": "^3.13.0"
   },
   "devDependencies": {
@@ -31,6 +31,7 @@
     "@types/morgan": "^1.9.9",
     "@types/mysql": "^2.15.25",
     "@types/node": "^20.11.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
