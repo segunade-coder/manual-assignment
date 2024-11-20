@@ -26,21 +26,23 @@ document
     const program = document.getElementById("program").value;
     const phone = document.getElementById("phone").value;
     const button = document.querySelector(".submit");
+    const params = new URLSearchParams(window.location.search);
 
+    const ref = params.get("ref") || null;
     if (!name && !adm && !program && !phone) {
       alert("Fill in all fields");
       return;
     }
-    if (!LINK_CLICKED) {
-      return alert("Please click on the link to join the WhatsApp group");
-    }
+    // if (!LINK_CLICKED) {
+    //   return alert("Please click on the link to join the WhatsApp group");
+    // }
     button.innerHTML = "Loading...";
     const response = await fetch("/students", {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify({ name, adm, phone, program }),
+      body: JSON.stringify({ name, adm, phone, program, ref }),
     });
     button.innerHTML = "Submit";
     if (response.ok) {
@@ -49,10 +51,11 @@ document
       document.getElementById("program").value = "M";
       document.getElementById("phone").value = "";
       LINK_CLICKED = false;
-      window.location.href = "./success.html";
+      window.location.href = `./success.html?adm=${adm}`;
     } else {
+      console.log(response.body);
       LINK_CLICKED = false;
-      window.location.href = "./error.html";
+      // window.location.href = "./error.html";
     }
   });
 document.querySelector(".whatsapp").addEventListener("click", (e) => {

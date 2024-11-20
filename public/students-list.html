@@ -51,11 +51,11 @@
         return alert("unable to fetch students");
       }
       const students = await response.json();
-      students.length === 0
+      students.data.length === 0
         ? (template =
             '<tr><td colspan="6" style="text-align:center;">No record</td></tr>')
         : (template = "");
-      students.map((student, i) => {
+      students.data.map((student, i) => {
         template += `<tr><td>${i + 1}</td>
             <td>${student.name}</td>
             <td>${student.adm}</td>
