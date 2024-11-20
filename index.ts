@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 import morgan from "morgan";
 import logger from "./utils/logger";
 import "./models";
+import path from "path";
 // express middleware
 process.on("uncaughtException", (error) => {
   logger.error(error.message, { name: error.name, stack: error.stack });
@@ -21,6 +22,10 @@ app.set("trust proxy", 1);
 app.use(cors(corsConfig));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(
+  "/admin",
+  express.static(path.join(__dirname, "public", "students-list.html"))
+);
 app.use(morgan("dev"));
 app.use(router);
 app.use(errorHandler);
