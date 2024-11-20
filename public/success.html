@@ -11,14 +11,28 @@
   <body>
     <div class="card-container">
       <div class="card">
-        <img src="./icons8-success.svg" alt="" />
+        <div class="image-cont">
+          <img src="./icons8-success.svg" alt="" />
+          <p>Success</p>
+        </div>
         <div class="description">
           Congratulations, your application has been submitted successfully.
+          <footer>
+            <a onclick="share()">Share</a>
+            <a href="/">Continue</a>
+          </footer>
         </div>
-        <footer>
-          <a href="javascript:window.history.back()">Go Back</a>
-        </footer>
       </div>
     </div>
+    <script>
+      const share = () => {
+        const params = new URLSearchParams(window.location.search);
+        const link =
+          `https://chat.whatsapp.com/K7177w3ixTG23UIXP5Sj36?ref=` +
+          (params.get("adm") ?? "156");
+        navigator.clipboard.writeText(link);
+        alert("link copied");
+      };
+    </script>
   </body>
 </html>
