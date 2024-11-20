@@ -33,9 +33,9 @@ document
       alert("Fill in all fields");
       return;
     }
-    // if (!LINK_CLICKED) {
-    //   return alert("Please click on the link to join the WhatsApp group");
-    // }
+    if (!LINK_CLICKED) {
+      return alert("Please click on the link to join the WhatsApp group");
+    }
     button.innerHTML = "Loading...";
     const response = await fetch("/students", {
       headers: {
@@ -53,7 +53,6 @@ document
       LINK_CLICKED = false;
       window.location.href = `./success.html?adm=${adm}`;
     } else {
-      console.log(response.body);
       LINK_CLICKED = false;
       // window.location.href = "./error.html";
     }

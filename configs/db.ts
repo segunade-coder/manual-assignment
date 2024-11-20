@@ -20,6 +20,8 @@ connection.connect((err) => {
   if (err) {
     logger.error("Failed to connect to database");
     process.exit(1);
+  } else {
+    logger.info("connected to database successfully");
   }
 });
 // export the connection
