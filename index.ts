@@ -3,7 +3,6 @@ dotenv.config();
 import express from "express";
 import "express-async-errors";
 import http from "http";
-import helmet from "helmet";
 import cors from "cors";
 import { corsConfig } from "./configs/configOptions";
 import router from "./routes";
@@ -21,14 +20,6 @@ process.on("uncaughtException", (error) => {
 app.set("trust proxy", 1);
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"], // modify as needed
-    },
-  })
-);
 app.use(express.static("public"));
 app.use(morgan("dev"));
 app.use(router);
